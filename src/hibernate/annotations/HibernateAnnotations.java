@@ -27,7 +27,17 @@ public class HibernateAnnotations {
             session.save(prf);
             session.save(disc);
             session.save(prf02);
-            
+        session.getTransaction().commit();
+        HibernateUtil.shutdown();
+        
+        //ATUALIZANDO DADOS
+        
+        prf.setNome("Guilherme Novo");
+        disc.setDescricao("Disciplina de calculos");
+        
+        session.beginTransaction();
+            session.update(prf);
+            session.update(disc);
         session.getTransaction().commit();
         HibernateUtil.shutdown();
     }
