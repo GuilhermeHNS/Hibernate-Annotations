@@ -34,12 +34,18 @@ public class HibernateAnnotations {
         
         prf.setNome("Guilherme Novo");
         disc.setDescricao("Disciplina de calculos");
-        
         session.beginTransaction();
             session.update(prf);
             session.update(disc);
         session.getTransaction().commit();
         HibernateUtil.shutdown();
+        
+        //DELETANDO DADOS
+       session = HibernateUtil.getSessionFactory().openSession();
+       session.beginTransaction();
+            session.delete(prf);
+       session.getTransaction().commit();
+       HibernateUtil.shutdown();
     }
     
 }
